@@ -9,9 +9,20 @@ class Post extends Model
 {
     use HasFactory;
     protected $table = 'posts';
-    protected $fillable =['id','title', 'body'];
+    protected $fillable =[
+        'cover_image',
+        'slug',
+        'title',
+         'body',
+         'meta_description',
+         'published_at',
+         'featured',
+         'author_id',
+         'category_id',
+
+        ];
     public function user(){
-        return $this->belongsTo(User::class)->withDefault('Admin User');
+        return $this->belongsTo(User::class, 'author_id')->withDefault('Admin User');
     }
     public function category(){
         return $this->belongsTo(Category::class);
