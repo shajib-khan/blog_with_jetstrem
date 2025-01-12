@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('dashboard.category.index');
+        return view('components.dashboard.category.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.category.create');
+        return view('components.dashboard.category.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.category.edit');
+        return view('components.dashboard.category.edit');
     }
 
     /**
