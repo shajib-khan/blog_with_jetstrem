@@ -6,20 +6,10 @@
         <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('category.index')">
                 {{ __('Index') }}
             </x-nav-link>
-            <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('category.index')">
+            <x-nav-link href="{{ route('categories.create') }}" :active="request()->routeIs('category.index')">
                 {{ __('Create') }}
             </x-nav-link>
     </x-slot>
- <!--   <x-slot name="nav">
-        <div class="space-x-4">
-            <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('category.index')">
-                {{ __('Index') }}
-            </x-nav-link>
-            <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('category.create')">
-                {{ __('Create') }}
-            </x-nav-link>
-        </div>
-    </x-slot>-->
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -36,12 +26,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($categories as $category)
                         <tr class="border-b border-neutral-200 dark:border-white/10">
-                            <td class="whitespace-nowrap px-6 py-4 font-medium">Category ID</td>
-                            <td class="whitespace-nowrap px-6 py-4">Category Name</td>
-                            <td class="whitespace-nowrap px-6 py-4">Sub Categories</td>
-                            <td class="whitespace-nowrap px-6 py-4">Created Date</td>
-                            <td class="whitespace-nowrap px-6 py-4">Updated Date</td>
+                            <td class="whitespace-nowrap px-6 py-4 font-medium">{{$category->id}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">$category->name</td>
+                           [
+                            @foreach($category->subcategories as $subcategory)
+                            <td class="whitespace-nowrap px-6 py-4">{{$subcategory->name}}</td>
+                            @endforeach
+                            ]
+                            <td class="whitespace-nowrap px-6 py-4">{{$category->created_at}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">$category->updated_at</td>
                             <td class="whitespace-nowrap px-6 py-4"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
 </svg>
@@ -52,6 +47,7 @@
 </svg>
 </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
