@@ -25,7 +25,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('components.dashboard.category.create');
+        return view('components.dashboard.category.create',[
+            'categories'=>Category::with('subcategories')->whereNull('parent_id')->get(),
+        ]);
     }
 
     /**

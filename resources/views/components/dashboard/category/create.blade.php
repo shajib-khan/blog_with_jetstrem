@@ -20,6 +20,10 @@
                         <small class="mb-4 text-gray-500 w-full">Note: Select Parent only for sub category</small>
                         <select name="parent_id" id="" class="w-full border-none mb-6">
                             <option value="">Select Parent Category</option>
+                            @foreach ($categories as $category )
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+
+                            @endforeach
                         </select>
                     </div>
 
