@@ -63,7 +63,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('components.dashboard.category.edit');
+        $categories = Category::with('subcategories')->whereNull('parent_id')->get();
+        return view('components.dashboard.category.edit',compact('category','categories'));
     }
 
     /**
@@ -71,7 +72,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+        'name'      => ['required', 'max:200'],
+        'parent_id' => ['sometimes', 'nullable', 'numeric'],
+    ]);
+    $category->name = $validated['name'];
+    $category->parent_id = $validated['parent_id'] ?? null;
+    $category->slug = Str::slug($validated['name']); // Generate slug
+    $category->save();
+
     }
 
     /**
@@ -79,6 +88,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }

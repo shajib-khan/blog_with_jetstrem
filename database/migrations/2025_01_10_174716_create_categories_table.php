@@ -16,8 +16,11 @@ return new class extends Migration
 
             $table->string('name')->unique();
             $table->string('slug');
-            $table->foreignId('parent_id')->nullable()->constrained('categories');
+            $table->foreignId('parent_id')->nullable()->constrained('categories')->onDelete('cascade');
+
             $table->timestamps();
+
+
         });
     }
 

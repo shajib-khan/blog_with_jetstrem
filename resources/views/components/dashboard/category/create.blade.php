@@ -29,7 +29,7 @@
 
                     <div class="p-4">
                         <x-label for="name" value="{{ __('Name') }}" />
-                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
                         <small class="mb-4 text-gray-500 w-full">Note: Maximum 200 Characters</small>
                         @error('name')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
