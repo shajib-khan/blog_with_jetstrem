@@ -12,6 +12,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //public $parent_id=1;
     public function index()
     {
         return view('components.dashboard.category.index',[
@@ -30,15 +31,21 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        $category               = new Category;
-        $category->name         = $request->name;
-        $category->parent_id    = $request->parent_id;
-        $category->slug         = $request->Str::slug($request->name);
+
+        $validated = $request->validate([
+            'name'      => ['required', 'max:200'],
+            'parent_id' => ['sometimes', 'nullable', 'numeric'],
+        ]);
+
+        $category = new Category();
+        $category->name = $validated['name'];
+        $category->parent_id = $validated['parent_id'] ?? null;
+        $category->slug = Str::slug($validated['name']); // Generate slug
         $category->save();
 
-        return redirect ()->route('categories.index')->with('success', 'Category Successfully Created');
+        return redirect()->route('categories.index')->with('success', 'Category successfully created');
     }
 
     /**
