@@ -53,15 +53,19 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('components.dashboard.tags.edit',compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
-        //
+        $tag->update([
+            'name'=>$request->name(),
+           'slug' =>Str::slug($request->name()),
+        ]);
+        return redirect()->route('tags.index')->with('success', 'Tag Successfully Updated');
     }
 
     /**
@@ -69,6 +73,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('tags.index')->with('success', 'Tag Successfully Deleted');
     }
 }
