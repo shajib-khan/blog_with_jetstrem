@@ -2,11 +2,6 @@
 <x-app-layout>
 
     <x-slot name="header">
-        @if(session()->has('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Category') }}
         </h2>
