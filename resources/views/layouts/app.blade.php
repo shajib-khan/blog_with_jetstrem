@@ -14,8 +14,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <!-- Styles -->
+        <!-- livewireStyles -->
         @livewireStyles
+
+        <!-- ui kit style -->
+        @bukStyles(true)
+
+
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -39,7 +44,10 @@
         </div>
 
         @stack('modals')
-
+{{--livewire scripits--}}
         @livewireScripts
+        {{--blade ui kit scripts--}}
+        @bukScripts(true)
+
     </body>
 </html>
