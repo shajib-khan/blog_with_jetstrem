@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
-            $table->string('cover_image');
+            $table->string('cover_image')->nullable();
             $table->string('title');
             $table->string('slug');
             $table->longText('body');
@@ -22,7 +22,8 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->boolean('featured')->default(0);
 
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('author_id')->constrained('users');
+
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
 
             $table->timestamps();
