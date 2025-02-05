@@ -14,7 +14,7 @@ class Delete extends Component
     {
         $this->resetErrorBag();
         // If dispatchBrowserEvent is not available, we use emit as an alternative.
-        $this->emit('confirming-delete-post');
+        $this->dispatch('confirming-delete-post');
         $this->confirmingPostDeletion = true;
     }
 

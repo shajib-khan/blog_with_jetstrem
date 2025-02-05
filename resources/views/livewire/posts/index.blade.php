@@ -1,5 +1,5 @@
-<div class="mx-auto max-w-7xl">
-    <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
+<div class="w-full">
+    <div class="overflow-hidden bg-wh   ite shadow-xl sm:rounded-lg">
 
         {{-- Main Heading --}}
         <div class="flex w-full p-3 space-x-2">
@@ -101,7 +101,7 @@
                     </td>
 
                     <td class="px-2 py-4 whitespace-nowrap">
-                        
+
                     </td>
 
                     <td class="px-2 py-4 whitespace-nowrap">
